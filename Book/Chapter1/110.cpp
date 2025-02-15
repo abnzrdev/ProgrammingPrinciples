@@ -8,6 +8,7 @@ int main(){
     int val1 = 0;
     int val2 = 0;
     cin >> val1 >> val2;
-    cout << "The max value is " << (val1 > val2) * val1 + (val1 < val2) * val2;
+    cout << "The max value is " << (val1 > val2) * val1 + (val1 < val2) * val2 << endl;
+    cout << "The min value is " << (val1 > val2) * val2 + (val1 < val2) * val1;
     return 0;
 }

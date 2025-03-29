@@ -5,7 +5,7 @@
 using namespace std;
 
 int main(){
-  constexpr double cm_per_inch = 2.54;
+  const double cm_per_inch = 2.54;
   int length = 0;
   char unit = ' ';
 

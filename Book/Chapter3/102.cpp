@@ -5,12 +5,12 @@
 using namespace std;
 
 int main(){
-  constexpr double yen_to_usd = 0.0067;
-  constexpr double krn_to_usd = 0.09;
-  constexpr double yen_to_krn = 0.075;
+  const double yen_to_usd = 0.0067;
+  const double krn_to_usd = 0.09;
+  const double yen_to_krn = 0.075;
   char currency = ' ';
-
   double cash;
+
   cout << "Enter the amount of cash you have with the currency you hold(u = usd , y = yen , k = krone) : ";
   cin >>  cash >> currency;
 

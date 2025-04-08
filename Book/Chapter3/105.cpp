@@ -25,6 +25,9 @@ int main(){
   // For making those files to be stored in ina vector
   vector<double> store;
 
+  //Asking the user to input
+  cout << "Enter your two measurments separated by space" << endl;
+
   while(cin >> num1 >> num2){
     // Taking inputs and taking the unit inputs
     cout << "What is your unit for the first number : ";
@@ -69,7 +72,6 @@ int main(){
       }
       store.push_back(num1);          // including num1 in list(the vector named store)
       store.push_back(num2);          // including num2 in the list(the vector named store)
-      sort(store.begin(), store.end());
 
       ind_sum = num1 + num2;    // computing the sum in every iteration
    	  sum += ind_sum;           // Saving the sum of all inputs
@@ -87,6 +89,25 @@ int main(){
   for(int i = 0; i < store.size(); i++){
     cout << store[i] << endl;
   }
+
+  //Sort the input
+  sort(store.begin(),store.end());
+
+  //Computing the mode of the inputs
+  int mod = 1;
+  for(int i = 1; i < store.size() + 1; i++){
+    if(store[i - 1] == store[i]){
+      mod++;
+    }
+    else{
+      cout << store[i - 1] << " occured " << mod << " times!!" << endl;
+      mod = 1;
+    }
+  }
+
+  // Giving the largest and the smallest input
+  cout << "The largest input is : " << store[store.size() - 1] << endl;
+  cout << "The smalles input is : " << store[0] << endl;
 
   return 0;
 }

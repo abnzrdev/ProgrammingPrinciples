@@ -1,0 +1,1 @@
+do the error checking for the area and framed area with both caller function perspective and callee function perspective - done

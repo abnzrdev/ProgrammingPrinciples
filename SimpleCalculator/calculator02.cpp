@@ -1,4 +1,6 @@
-//
+// so my next task is to add the ! operator which can bind tighter that / and *
+// so we have to use the include the character have to be read like operator
+// so we have to include other part of the grammar
 // Created by Abenezer on 5/28/2025.
 //
 #include "../book/chapter5/std_lib_facilities.h"  // Calling header files for the program
@@ -48,7 +50,7 @@ Token Token_stream::get() {
     cin >> ch;
 
     switch (ch) {
-    case '=': case 'x': case '(': case ')': case '{':
+    case '=': case 'x': case '(': case ')': case '{': case '!':
     case '+': case '-': case '*': case '/': case  '}':
         return Token(ch);
     case '.':
@@ -72,8 +74,25 @@ Token_stream ts;  // global Token_stream
 double expression();
 double term();
 double primary();
+double special(); // For handling factorial
 
 //------------------------------------------------------------------------------
+
+double factorial() {
+    double left = primary();
+    Token t = ts.get();
+    while (t.kind == '!') {
+        if (left < 0 || left != int(left))
+            error("Factorial only defined for non-negative integers");
+        int result = 1;
+        for (int i = 1; i <= int(left); ++i)
+            result *= i;
+        left = result;
+        t = ts.get();
+    }
+    ts.putback(t);
+    return left;
+}
 
 double primary() {
     Token t = ts.get();
@@ -100,17 +119,17 @@ double primary() {
 //------------------------------------------------------------------------------
 
 double term() {
-    double left = primary();
+    double left = factorial();
     Token t = ts.get();
 
     while (true) {
         switch (t.kind) {
         case '*':
-            left *= primary();
+            left *= factorial();
             t = ts.get();
             break;
         case '/': {
-            double d = primary();
+            double d = factorial();
             if (d == 0) error("divide by zero");
             left /= d;
             t = ts.get();
